@@ -31,5 +31,10 @@ class AppServiceProvider extends ServiceProvider
         Builder::macro('orWhereLike', function($key, $value) {
             return $this->orWhere($key, 'LIKE', "%{$value}%");
         });
+
+        Builder::macro('whereBetweenDates', function($key, $from_value, $to_value) {
+            return $this->whereDate($key, '>=', $from_value)
+                        ->whereDate($key, '<=', $to_value);
+        });
     }
 }
