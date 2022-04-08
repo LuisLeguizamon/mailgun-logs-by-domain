@@ -18,7 +18,7 @@ class FetchMailsFromAPIService
     public function get()
     {
         #1- Get Logs from API
-        $client = new Client(['base_uri' => 'https://api.mailgun.net/','timeout'  => 10.0]);
+        $client = new Client(['base_uri' => config("api.base_uri"),'timeout'  => 10.0]);
         $method = 'GET';
         $uri = 'v3/'.$this->domain->name.'/events';
         $now= Carbon::now()->toRfc2822String();
