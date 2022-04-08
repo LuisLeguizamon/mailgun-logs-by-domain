@@ -25,7 +25,8 @@ class MailLogController extends Controller
 
         $logs = MailLog::query()
             ->where('domain_id', $domainId)
-            ->whereBetween('timestamp', [$filters['date_from'], $filters['date_to']])
+            ->whereDate('timestamp','>=',$filters['date_from'])
+            ->whereDate('timestamp','<=',$filters['date_to'])
             ->when(request()->input('event'), function($q, $event) {
                 $q->where('event', $event);
             })
